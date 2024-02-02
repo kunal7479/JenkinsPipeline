@@ -1,48 +1,15 @@
 pipeline {
-    agent any
-
+    agent any 
     stages {
-        stage('Checkout') {
+        stage('Build') { 
             steps {
-                // Checkout the source code from version control
-                checkout scm
+                echo "Building" 
             }
         }
-
-        stage('Build') {
+        stage('Test') { 
             steps {
-                // Build the Spring Boot application using Maven
-                sh 'mvn clean install'
+                echo "Testing" 
             }
-        }
-
-        stage('Test') {
-            steps {
-                // Run unit tests using Maven
-                sh 'mvn test'
-            }
-        }
-
-        stage('Package') {
-            steps {
-                // Package the Spring Boot application (e.g., create a JAR file)
-                sh 'mvn package'
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                // Add deployment steps if needed
-            }
-        }
-    }
-
-    post {
-        success {
-            // Add post-build actions, notifications, etc.
-        }
-        failure {
-            // Handle failure scenarios
         }
     }
 }
